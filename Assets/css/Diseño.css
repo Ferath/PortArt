@@ -1,0 +1,72 @@
+.titulo {
+    text-align: center;
+    margin: 30px;
+    font-size: 44px;
+}
+
+.contenido .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    border: 1px solid;
+    border-color: #2c3e50;
+    cursor: pointer;
+}
+
+.card img{
+    padding: 20px;
+}
+
+.side-left {
+    background: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 10px;
+    margin: 0;
+    max-height: 700px auto;
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    grid-row-start: 1;
+    grid-row-end: 5;
+}
+
+.contenido {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto, 2);
+}
+
+.first-side-left h4{
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+.first-side-left > label > input {
+    margin: 5px 10px;
+    cursor: pointer;
+}
+
+.first-side-left label {
+    cursor: pointer;
+}
+
+.second-side-left h4 {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+.second-side-left > label > input {
+    margin: 5px 10px;
+    cursor: pointer;
+}
+
+.second-side-left label{
+    cursor: pointer;
+}

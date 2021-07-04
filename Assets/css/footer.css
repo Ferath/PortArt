@@ -1,0 +1,30 @@
+.recome {
+    font-size: 28px;
+    margin: 20px;
+    margin-left: 40px;
+    padding: 0;
+}
+
+.h3diseño {
+  color: #fa983a;
+}
+
+#Recome {
+  position: absolute;
+  top: 95rem;
+}
+
+.footer-main {
+  margin: 0;
+  padding: 0;
+  background: #24252A;
+  height: 200px;
+  text-align: center;
+}
+
+.div-footer {
+  justify-content: center;
+  position: relative;
+  top: 80px;
+  font-size: 20px;
+}

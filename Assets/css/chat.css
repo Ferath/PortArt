@@ -1,0 +1,91 @@
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.chat-container {
+    margin-top: 30px;
+    width: 600px;
+    position: relative;
+    left: 50%;;
+    transform: translate(-50%);
+}
+
+.container p {
+    color: black;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: black;
+}
+
+.time-left {
+    float: left;
+    color: black;
+}
+
+form {
+    margin: 30px auto;
+}
+
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 90%;
+    color: black;
+    background: #f1f1f1;
+}
+
+form.example button {
+    position: absolute;
+    left: 90%;
+    width: 12%;
+    padding: 8.5px 5px;
+    margin-left: 5px;
+    background: #2196F3;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease 0s;
+}
+
+form.example button:hover {
+    background: #0b7dda;
+}
+  
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}

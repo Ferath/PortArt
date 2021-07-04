@@ -1,0 +1,28 @@
+
+.container {
+    text-align: center;
+    background: #fff;
+}
+
+.container h3 {
+    font-size: 54px;
+    margin: 30px;
+}
+
+.container-compra {
+    margin: 40px;
+}
+
+.container-compra p {
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+
+.container-compra h4 a{
+    font-size: 34px;
+    color: #0088a9;
+}
+
+.container-compra h4 {
+    font-size: 40px;
+}
