@@ -25,19 +25,9 @@
     <title>Perfil</title>
 </head>
 <body>
-    <header>
-        <a href="index.php"><img src="Assets/imgs/logo.png" alt="" class="logo"></a>
-        <nav class="menu">
-                <ul class="nav_links">
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="Diseño.php">Dibujos</a></li>
-                    <li><a href="Perfil.php?id=<?php echo $_SESSION["id"]; ?>"><?php echo htmlspecialchars($_SESSION["email"]); ?></a></li>
-                    <li><a href="logout.php" id="login">Cerrar Sesión</a></li>
-                    <li><img src="#" alt=""></li>
-                </ul>
-            </img>
-        </nav>
-    </header>
+    <?php 
+        include"includes/navbar.php";
+    ?>
     <main>
         <div class="div-pefil">
             <img src="Assets/imgs/perfil/businesswoman.png" class="img-perfil"><br>
@@ -50,40 +40,38 @@
             </button>
             <div class="container-info">
                 <div id="wrapper">
-		<table>
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Email</th>
-					<th>Teléfono</th>
-					<th>avatar</th>
-					<th>Acerca de mí</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<?php 
-				//Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
-				if($result = mysqli_query($link, $query)):  
-			?>
-				<?php 
-					//la variable $user contiene el contenido de $result en un array asociativo
-					while($user = mysqli_fetch_assoc($result)): 
-				?>
-					<tr>
-						<td width="20%"><a href="Perfil.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></td>
-						<td width="15%"><?php echo $user['email']; ?></td>
-						<td width="15%" class=""><?php echo $user['phone']; ?></td>
-                        <td width="15%" class=""><?php echo $user['acercademi']; ?></td>
-						<td width="15%"><?php echo $user['avatar']; ?></td>
-						
-						<td width="15%" class="">
-							<a href="update.php?id=<?php echo $user['id'] ?>" class=''>Editar</a> <a href="delete.php?id=<?php echo $user['id'] ?>" class=''>Eliminar</a>
-						</td>
-					</tr>
-				<?php endwhile; ?>
-				<?php mysqli_free_result($result); ?>
-			<?php endif; ?>
-		</table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Acerca de mí</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <?php 
+                    //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
+                    if($result = mysqli_query($link, $query)):  
+                ?>
+                    <?php 
+                        //la variable $user contiene el contenido de $result en un array asociativo
+                        while($user = mysqli_fetch_assoc($result)): 
+                    ?>
+                        <tr>
+                            <td width="20%" style="text-align: center"><a href="Perfil.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></td>
+                            <td width="15%" ><?php echo $user['email']; ?></td>
+                            <td width="15%" class=""><?php echo $user['phone']; ?></td>
+                            <td width="15%" class=""><?php echo $user['acercademi']; ?></td>
+                            
+                            <td width="15%" class="">
+                                <a href="update.php?id=<?php echo $user['id'] ?>" class=''>Editar</a> <a href="delete.php?id=<?php echo $user['id'] ?>" class=''>Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    <?php mysqli_free_result($result); ?>
+                <?php endif; ?>
+            </table>
 	</div>
             </div>
         </div>
@@ -141,8 +129,8 @@
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-                <form action="upload.php" method="POST" enctype="multipart/form-data"/>
-                Añadir imagen: <input name="archivo" id="archivo" type="file"/>
+                <form action="upload.php" method="POST" enctype="multipart/form-data">
+                Subir una imagen: <input name="imagen" id="imagen" type="file"/>
                 <input type="submit" name="subir" value="Subir imagen"/>
                 </form>
             </div>

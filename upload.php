@@ -1,37 +1,53 @@
 <?php
-   //Si se quiere subir una imagen
-   if (isset($_POST['subir'])) {
-   //Recogemos el archivo enviado por el formulario
-   $archivo = $_FILES['archivo']['name'];
-   //Si el archivo contiene algo y es diferente de vacio
-   if (isset($archivo) && $archivo != "") {
-      //Obtenemos algunos datos necesarios sobre el archivo
-      $tipo = $_FILES['archivo']['type'];
-      $tamano = $_FILES['archivo']['size'];
-      $temp = $_FILES['archivo']['tmp_name'];
-      //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
-     if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
-        echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-        - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
-     }
-     else {
-        //Si la imagen es correcta en tamaño y tipo
-        //Se intenta subir al servidor
-        if (move_uploaded_file($temp, 'uploads/'.$archivo)) {
-            //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-            chmod('uploads/'.$archivo, 0777);
-            //Mostramos el mensaje de que se ha subido co éxito
-            echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
-            //Mostramos la imagen subida
-            echo '<p><img src="uploads/'.$archivo.'"></p>';
-            echo '<script language="javascript">alert("Imagen correctamente cargada");</script>';
-        }
-        else {
-           //Si no se ha podido subir la imagen, mostramos un mensaje de error
-           echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
-        }
-      }
-   }
-}
+    // Se inicializa la sesión
+    session_start();
+    include 'config.php';
 
+    // Se comprueba que haya un usuario logeado, sino lo redirige al Login.php
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: login.php");
+        exit;
+    }
+	//Cadena de consulta que me devuelve todos los registros de la tabla 'users'
+	$query = "SELECT * FROM users WHERE id = ".$_SESSION["id"];
+   //Se reciben los datos de la imagen subida
+   $nombre_imagen=$_FILES['imagen']['name'];
+   $tipo_imagen=$_FILES['imagen']['type'];
+   $tamagno_imagen=$_FILES['imagen']['size'];
+
+   if($tamagno_imagen<=1000000){
+      if($tipo_imagen=="image/jpeg" || $tipo_imagen=="image/jpg" || $tipo_imagen=="image/png"){
+         $carpeta_destino=$_SERVER['DOCUMENT_ROOT'] . '/portart/uploads/';
+          move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta_destino.$nombre_imagen);
+      }else{
+         echo "Tipo de archivo invalido.";
+      }
+   }else{
+      echo "Archivo demasiado pesado";
+   }
+
+  
+   $link = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+   // Check connection
+   if($link === false){
+      die("ERROR: Could not connect. " . mysqli_connect_error());
+   }
+
+   $objetivo_imagen=fopen($carpeta_destino . $nombre_imagen, "r");
+
+   $contenido1=fread($objetivo_imagen, $tamagno_imagen);
+
+   $contenido1=addslashes($contenido1);
+
+   fclose($objetivo_imagen);
+
+   $sqlImagen = "INSERT INTO imagenes (id_autor,nombre, tipo, contenido) VALUES (".$_SESSION["id"].", '$nombre_imagen', '$tipo_imagen', '$contenido1')";
+
+   $resultado=mysqli_query($link,$sqlImagen);
+
+   if(mysqli_affected_rows($link)>0){
+      echo "se ha ingresado";
+   }else{
+      echo "Algo ha salido mal";
+   }
 ?>

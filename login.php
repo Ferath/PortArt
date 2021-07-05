@@ -99,6 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Assets/css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Inicio Sesión</title>
 </head>
 <body>
@@ -120,10 +121,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
         <form class="box" action="" method="post" name="signin-form">
             <input type="text" name="email" placeholder="Correo"  required>
-            <input type="password" name="password" placeholder="Contraseña" required><br>
+            <input type="password" autocomplete="off" id="password" name="password" placeholder="Contraseña" required>
+            <input value="Mostrar Contraseña" type="button" onclick="mostrarContrasena()"></input> 
+            <br>
             <label class="PassOlvidada">¿Olvidaste tu contraseña?</label>
             <input type="submit" name="login" value="Iniciar"></input>
             <a href="register.php" class="registrate">Registrate</a>
         </form>
 </body>
 </html>
+
+<script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("password");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>

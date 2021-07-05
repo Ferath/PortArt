@@ -11,10 +11,11 @@ try {
 }
 
 $link = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
- 
+
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
+
 ?>
 
