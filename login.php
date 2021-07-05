@@ -37,8 +37,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // valida los datos
     if(empty($email_err) && empty($password_err)){
         // Ejecuta el statement
-        $sql = "SELECT id, email, password FROM users WHERE email = ?";
-        
+        $sql = "SELECT id, username, email, password FROM users WHERE email = ?";
+
         if($stmt = mysqli_prepare($link, $sql)){
             // Protege los datos ingresados y comienza a realizar la carga
             mysqli_stmt_bind_param($stmt, "s", $param_email);
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Comprueba si el nombre de usuario existe y si es así, que la contraseña corresponda al user
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Protege los datos
-                    mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $email, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Si la contraseña es correcta, felicidades, te logeaste
@@ -64,6 +64,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             // Almacena el ID
                             $_SESSION["id"] = $id;
+                            // Almacena el nickname del Usuario
+                            $_SESSION["username"] = $username;
                             // Almacena el Correo del Usuario
                             $_SESSION["email"] = $email;  
                                                           
@@ -75,9 +77,61 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             echo '<script language="javascript">alert("La contraseña es erronea");</script>';
                         }
                     }
-                } else{
-                    // Muestra un error si el username no existe
-                    echo '<script language="javascript">alert("Su usuario no existe");</script>';
+                } else if(empty($email_err) && empty($password_err)){
+                    // Ejecuta el statement
+                    $admin = "SELECT id, username, email, password, id_rol FROM administrador WHERE email = ?";
+            
+                    if($stmt = mysqli_prepare($link, $admin)){
+                        // Protege los datos ingresados y comienza a realizar la carga
+                        mysqli_stmt_bind_param($stmt, "s", $param_email);
+                        
+                        // Selecciona los parametros
+                        $param_email = $email;
+                        
+                        // Ejecuta la statement
+                        if(mysqli_stmt_execute($stmt)){
+                            // Almacena el resultado
+                            mysqli_stmt_store_result($stmt);
+                            
+                            // Comprueba si el nombre de usuario existe y si es así, que la contraseña corresponda al user
+                            if(mysqli_stmt_num_rows($stmt) == 1){                    
+                                // Protege los datos
+                                mysqli_stmt_bind_result($stmt, $id, $username, $email, $hashed_password, $id_rol);
+                                if(mysqli_stmt_fetch($stmt)){
+                                    if(password_verify($password, $hashed_password)){
+                                        // Si la contraseña es correcta, felicidades, te logeaste
+                                        session_start();
+                                        
+                                        // Variable para el inicio de sesión valido
+                                        $_SESSION["loggedin"] = true;
+                                        // Almacena el ID
+                                        $_SESSION["id"] = $id;
+                                        // Almacena el USERNAME del Usuario
+                                        $_SESSION["username"] = $username;
+                                        // Almacena el Correo del Usuario
+                                        $_SESSION["email"] = $email;
+                                        // Almacena el rol del Usuario
+                                        $_SESSION["id_rol"] = $id_rol;
+                                                                      
+                                        
+                                        // Redirige al usuario
+                                        header("location: indexlogeado.php");
+                                    } else{
+                                        // Muestra un error de que la contraseña no es valida
+                                        echo '<script language="javascript">alert("La contraseña es erronea");</script>';
+                                    }
+                                }
+                            } else{
+                                // Muestra un error si el username no existe
+                                echo '<script language="javascript">alert("Su usuario no existe");</script>';
+                            }
+                        } else{
+                            echo "Algo salió mal, por favor vuelve a intentarlo.";
+                        }
+                    }
+                    
+                    // Finaliza el statement
+                    mysqli_stmt_close($stmt);
                 }
             } else{
                 echo "Algo salió mal, por favor vuelve a intentarlo.";

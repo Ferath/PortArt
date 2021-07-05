@@ -10,10 +10,25 @@
     }
 	//Cadena de consulta que me devuelve todos los registros de la tabla 'users'
 	$query = "SELECT * FROM users WHERE id = ".$_SESSION["id"];
+    
+    $id_autor='';
+    $tipo='';
+    $contenido='';
+
+    $MostrarFotos="SELECT * FROM imagenes WHERE id_autor=".$_SESSION["id"];
+?>
+
+<?php 
+    //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
+    if($result = mysqli_query($link, $query)):  
+ ?>
+
+<?php 
+    //la variable $user contiene el contenido de $result en un array asociativo
+    while($user = mysqli_fetch_assoc($result)): 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +37,7 @@
     <link rel="stylesheet" href="Assets/css/footer.css">
     <link rel="stylesheet" href="Assets/css/perfil.css">
     <link rel="stylesheet" href="Assets/css/sliderPerfil.css">
-    <title>Perfil</title>
+    <title>Perfil de <?php echo $user['username']; ?></title>
 </head>
 <body>
     <?php 
@@ -44,33 +59,20 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
                         <th>Acerca de mí</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <?php 
-                    //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
-                    if($result = mysqli_query($link, $query)):  
-                ?>
-                    <?php 
-                        //la variable $user contiene el contenido de $result en un array asociativo
-                        while($user = mysqli_fetch_assoc($result)): 
-                    ?>
+                
+                    
                         <tr>
                             <td width="20%" style="text-align: center"><a href="Perfil.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></td>
-                            <td width="15%" ><?php echo $user['email']; ?></td>
-                            <td width="15%" class=""><?php echo $user['phone']; ?></td>
                             <td width="15%" class=""><?php echo $user['acercademi']; ?></td>
-                            
-                            <td width="15%" class="">
+                            <td width="15%" class="" style='text-align:centar'>
                                 <a href="update.php?id=<?php echo $user['id'] ?>" class=''>Editar</a> <a href="delete.php?id=<?php echo $user['id'] ?>" class=''>Eliminar</a>
                             </td>
                         </tr>
-                    <?php endwhile; ?>
-                    <?php mysqli_free_result($result); ?>
-                <?php endif; ?>
+                    
             </table>
 	</div>
             </div>
@@ -81,7 +83,7 @@
                 <i class="fa-caret-down"></i>
             </button>
             <div class="container-info">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p>Mi correo es: <?php echo $user['email']; ?><br><?php echo $user['phone']; ?></p>
             <div id="todolist">
     </div>
             </div>
@@ -105,6 +107,19 @@
                 <a href="CarroCompras.php"> Contratar servicio / prueba </a>
             </div>
         </div>
+        <?php 
+        //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
+            if($resultado = mysqli_query($link, $MostrarFotos)):  
+        ?>
+
+        <?php 
+            //la variable $user contiene el contenido de $result en un array asociativo
+            while($fila = mysqli_fetch_assoc($resultado)): 
+                $id_autor=$fila["id_autor"];
+                $contenido=$fila["contenido"];
+                $tipo=$fila["tipo"];  
+                echo "<img id='imagen' src='data:image/jpg; base64,". base64_encode($contenido)."'>";      
+        ?>
 
         <div class="container-btns">
             <button class="btn-dropdown">Trabajos
@@ -113,7 +128,12 @@
             <div class="container-info">
                 <div class="slideshow-container">
                     <div class="mySlides fade">
-                        <img src="Assets/imgs/cards/diagram.png" style="width:50%">
+                    
+                        <?php 
+                        echo "id del autor es ".$id_autor."<br>";
+                        echo "Tipo de imagen es ".$tipo."<br>";
+                        
+                        ?>
                         <div class="text">Caption Text</div>
                     </div>
                     
@@ -135,7 +155,8 @@
                 </form>
             </div>
         </div>
-        
+        <?php endwhile; ?>
+        <?php endif; ?>
     </main>
     <footer class="footer-main">
         <div class="div-footer">
@@ -148,3 +169,5 @@
 </body>
 </html>
 
+<?php endwhile; ?>
+<?php endif; ?>

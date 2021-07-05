@@ -46,8 +46,10 @@
    $resultado=mysqli_query($link,$sqlImagen);
 
    if(mysqli_affected_rows($link)>0){
-      echo "se ha ingresado";
+      echo '<script language="javascript">alert("Se ha subido su imagen");</script>';
+      echo '<script>window.location="Perfil.php";</script>';
    }else{
-      echo "Algo ha salido mal";
+      echo '<script language="javascript">alert("Algo ha salido mal");</script>';
+      echo '<script>window.location="Perfil.php";</script>';
    }
 ?>
