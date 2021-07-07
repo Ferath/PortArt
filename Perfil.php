@@ -8,6 +8,11 @@
         header("location: login.php");
         exit;
     }
+    if($_SESSION["id_rol"]==1){
+        include("includes/navadmin.php");
+    }else{
+        include("includes/navbar.php");
+    }
 	//Cadena de consulta que me devuelve todos los registros de la tabla 'users'
 	$query = "SELECT * FROM users WHERE id = ".$_SESSION["id"];
     
@@ -40,9 +45,7 @@
     <title>Perfil de <?php echo $user['username']; ?></title>
 </head>
 <body>
-    <?php 
-        include"includes/navbar.php";
-    ?>
+    
     <main>
         <div class="div-pefil">
             <img src="Assets/imgs/perfil/businesswoman.png" class="img-perfil"><br>

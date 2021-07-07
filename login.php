@@ -14,7 +14,6 @@ require_once "config.php";
 
 // Probando
 $email = $password = "";
-$email = $password = "";
 $email_err = $password_err = "";
 
 // Procesa los datos cuando son ingresados en el formulario
@@ -37,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // valida los datos
     if(empty($email_err) && empty($password_err)){
         // Ejecuta el statement
-        $sql = "SELECT id, username, email, password FROM users WHERE email = ?";
+        $sql = "SELECT id, id_rol, username, password, email  FROM users WHERE email = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Protege los datos ingresados y comienza a realizar la carga
@@ -46,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Selecciona los parametros
             $param_email = $email;
             
+
             // Ejecuta la statement
             if(mysqli_stmt_execute($stmt)){
                 // Almacena el resultado
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Comprueba si el nombre de usuario existe y si es así, que la contraseña corresponda al user
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Protege los datos
-                    mysqli_stmt_bind_result($stmt, $id, $username, $email, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $id_rol, $username, $hashed_password, $email);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Si la contraseña es correcta, felicidades, te logeaste
@@ -64,6 +64,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             // Almacena el ID
                             $_SESSION["id"] = $id;
+                            // Almacena el Rol de la persona
+                            $_SESSION["id_rol"] = $id_rol;
                             // Almacena el nickname del Usuario
                             $_SESSION["username"] = $username;
                             // Almacena el Correo del Usuario
@@ -141,6 +143,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Finaliza el statement
         mysqli_stmt_close($stmt);
     }
+
+    
     // Finaliza la conexión
     mysqli_close($link);
 }

@@ -67,7 +67,7 @@
 
     
     <div class="container">
-    <?php 
+        <?php 
         //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
             if($resultado = mysqli_query($link, $MostrarFotos)):  
         ?>
@@ -80,23 +80,26 @@
                 $tipo=$fila["tipo"];  
                       
         ?>
-        <div class="card">
-        <?php echo "<img id='imagen' style='width:200px' src='data:image/jpg; base64,". base64_encode($contenido)."'>"; ?>
-            <?php 
+        <?php 
             //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
-                $CargarNombre="SELECT username FROM users WHERE id = ".$id_autor;
+                $CargarNombre="SELECT * FROM users";
                 if($resultado = mysqli_query($link, $CargarNombre)):  
             ?>
+        <div class="card">
+        <?php echo "<img id='imagen' style='width:200px' src='data:image/jpg; base64,". base64_encode($contenido)."'>"; ?>
+            
             <?php 
             //la variable $user contiene el contenido de $result en un array asociativo
             while($fila1 = mysqli_fetch_assoc($resultado)): 
+                $id=$fila1["id"];    
                 $username=$fila1["username"];    
             ?>
-            <h1><?php echo $username ?></h1>
+            <h1><?php echo $username ?></h1>;
+            <h1></h1>
+            <p class="price">$19.99</p>
+            <?php echo "<a href=Perfil.php?id=$id><button>Ver Producto</button></a>"?>
             <?php endwhile; ?>
             <?php endif; ?> 
-            <p class="price">$19.99</p>
-            <a href="Perfil.php"><button>Ver Producto</button></a>
         </div>
         <?php endwhile; ?>
         <?php endif; ?> 
