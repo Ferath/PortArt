@@ -1,32 +1,40 @@
+body {
+    background-image: url("../../Images/bg1.png");
+    background-repeat: no-repeat;
+
+}
+
 .div-pefil {
-    background: none;
-    margin: 20px;
-    margin-top: 52px;
+    background-image: url("../../Images/banner.jpg");
+    margin-top: 20px;
     margin-bottom: 52px;
-    padding: 20px;
-    width: 700px;
+    width: 1000px;
     position: relative;
     left: 50%;
     transform: translate(-50%);
     border: 1px solid black;
+    text-align: center;
+    color: white;
+    padding: 15px;
+   
 }
 
 .img-perfil{
     position: relative;
-    left: 50%;
-    transform: translate(-50%);
     height: 100px;
 }
 
 #user_active {
-    text-align: center;
+    position: relative;
+    margin-left: -50%;
 }
 
 .div-pefil label  {
     position: relative;
-    left: 40%;
+    left: 30%;
     font-size: 44px;
 }
+
 
 .container-btns {
     margin: 10px;
@@ -53,9 +61,17 @@
 .container-info {
     display: none;
     background-color: white;
+    color: black;
 }
 
-.container-btns:hover, .container-info:hover, .slideshow-container:hover {
-    background: #fa983a;
-    border-radius: 15px;
+    .container-btns:hover, .container-info:hover, .slideshow-container:hover {
+        background: #4A636D;
+        border-radius: 15px;
+    }
+
+li, a {
+    color: #6F7F84;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
 }

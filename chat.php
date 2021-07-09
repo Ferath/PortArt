@@ -31,6 +31,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </ul>
             </img>
         </nav>
+        <ul class="nav navbar-nav">
+    <?php $role = Auth::user()->id_rol; ?>
+        @if($role == 1)
+            <li>Insert Lists Here</li>
+        @else if($role == 2)
+            <li>Insert Lists Here</li>
+        @else if($role == 3)
+            <li>Insert Lists Here</li>
+        @endif 
+    </ul>
     </header>
     
     <div class="chat-container">

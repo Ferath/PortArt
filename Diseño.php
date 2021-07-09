@@ -1,3 +1,17 @@
+<?php
+    // Se inicializa la sesión
+    session_start();
+    include 'config.php';
+    // Se comprueba que haya un usuario logeado, sino lo redirige al Login.php
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+            header("location: login.php");
+        exit;
+    }
+    $id_autor='';
+    $tipo='';
+    $contenido='';
+    $MostrarFotos="SELECT * FROM imagenes";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,33 +58,41 @@
                     <label><input type="checkbox" name="" id="">Etiquetas</label>
                 </div>
             </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/worldwide.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/sent.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/target.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/worldwide.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/sent.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/target.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/worldwide.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/sent.png" style="width:100%">
-            </div>
-            <div class="card">
-                <img src="Assets/imgs/cards/target.png" style="width:100%">
-            </div>
+
+            <div class="container">
+        <?php 
+        //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
+        if($resultado = mysqli_query($link, $MostrarFotos)):  
+    
+        //la variable $user contiene el contenido de $result en un array asociativo
+        while($fila = mysqli_fetch_assoc($resultado)): 
+            $id_autor=$fila["id_autor"];
+            $contenido=$fila["contenido"];
+                      
+        ?>
+        <div id="cards" class="grid">
+        <?php echo "<img id='imagen' style='width:200px' src='data:image/jpg; base64,". base64_encode($contenido)."'>"; ?>
+            <?php 
+                //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
+                $CargarNombre="SELECT id,username,tarifas FROM users WHERE id = ".$id_autor;
+                if($resultado1 = mysqli_query($link, $CargarNombre)):  
+            ?>
+            <?php 
+                //la variable $user contiene el contenido de $result en un array asociativo
+                while($fila1 = mysqli_fetch_assoc($resultado1)): 
+                $username=$fila1["username"];
+                $id=$fila1["id"];
+                $tarifas=$fila1["tarifas"];  
+            ?>
+            <?php endwhile; ?>
+            <?php endif; ?> 
+
+        </div>
+        <?php 
+            endwhile;
+            endif; 
+        ?> 
+    </div>
         </div>
     </div>
     <footer class="footer-main">
