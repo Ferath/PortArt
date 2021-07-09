@@ -9,9 +9,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 }
  
 // Los datos de la BD
-require_once "config.php";
+require_once "includes/config.php";
  
-
 // Probando
 $email = $password = "";
 $email_err = $password_err = "";
@@ -73,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                           
                             
                             // Redirige al usuario
-                            header("location: indexlogeado.php");
+                            header("location: logeado/indexlogeado.php");
                         } else{
                             // Muestra un error de que la contraseña no es valida
                             echo '<script language="javascript">alert("La contraseña es erronea");</script>';

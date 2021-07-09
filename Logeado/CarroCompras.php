@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 ?>
@@ -14,14 +14,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="Assets/css/footer.css">
-    <link rel="stylesheet" href="Assets/css/CarroCompras.css">
+    <link rel="stylesheet" href="../Assets/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../Assets/css/footer.css">
+    <link rel="stylesheet" href="../Assets/css/CarroCompras.css">
     <title>Carro de Compras</title>
 </head>
 <body>
     <header>
-        <a href="index.php"><img src="Assets/imgs/logo.png" alt="" class="logo"></a>
+        <a href="index.php"><img src="../Assets/imgs/logo.png" alt="" class="logo"></a>
         <nav class="menu">
                 <ul class="nav_links">
                     <li><a href="index.php">Inicio</a></li>
@@ -35,7 +35,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <main>
         <div class="container-producto">
             <div class="box-title">
-                <img src="Assets/imgs/cards/diagram.png" style="width: 100px">
+                <img src="../Assets/imgs/cards/diagram.png" style="width: 100px">
                 <div class="box-subtitle">
                     <h3>Titulo</h3>
                     <p>"Tipo"</p><br>

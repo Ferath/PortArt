@@ -1,7 +1,7 @@
 <?php
     // Se inicializa la sesión
     session_start();
-    include 'config.php';
+    include "../includes/config.php";
 
     // Se comprueba que haya un usuario logeado, sino lo redirige al Login.php
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -29,24 +29,26 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" 
+      type="image/png" 
+      href="../Assets/imgs/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/Assets/imgs/logo.png" type="image/x-icon"/>
+    <link rel="icon" href="../Assets/imgs/logo.png" type="image/x-icon"/>
     <link rel="shortcut icon" href="/Assets/imgs/logo.png" type="image/x-icon"/>  
-    <link rel="stylesheet" href="Assets/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="Assets/css/footer.css">
-    <link rel="stylesheet" href="Assets/css/perfil.css">
-    <link rel="stylesheet" href="Assets/css/sliderPerfil.css">
+    <link rel="stylesheet" href="../Assets/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../Assets/css/footer.css">
+    <link rel="stylesheet" href="../Assets/css/perfil.css">
     <title>Perfil de <?php echo $user['username']; ?></title>
 </head>
 <body>
     <header> 
-            <a href="index.php"><img src="Assets/imgs/logo.png" alt="" class="logo"></a>
+            <a href="index.php"><img src="../Assets/imgs/logo.png" alt="" class="logo"></a>
             <nav class="menu">
                     <ul class="nav_links">
                         <li><a href="indexlogeado.php">Inicio</a></li>
-                        <li><a href="Diseño.php">Dibujos</a></li>
-                        <li><a href="Perfil.php?id=<?php echo $_SESSION["username"]; ?>"><?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
-                        <li><a href="logout.php" id="login">Cerrar Sesión</a></li>
+                        <li><a href="diseñologeado.php">Dibujos</a></li>
+                        <li><a href="/Logeado/Perfil.php?id=<?php echo $_SESSION["username"]; ?>"><?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
+                        <li><a href="../includes/logout.php" id="login">Cerrar Sesión</a></li>
                         <li><img src="#" alt=""></li>
                     </ul>
                 </img>
@@ -54,7 +56,7 @@
     </header>
     <main>
         <div class="div-pefil">
-            <img src="Assets/imgs/perfil/businesswoman.png" class="img-perfil"><br>
+            <img src="../Assets/imgs/perfil/businesswoman.png" class="img-perfil"><br>
             <label id="user_active"><?php echo $user['email']; ?></label>
         </div>
         <div class="container-btns">
@@ -136,8 +138,7 @@
             <h2>PorArt 2021</h2>
         </div>
     </footer>
-    <script src="Assets/js/dropdown.js"></script>
-    <script src="Assets/js/slider.js"></script>
+    <script src="../Assets/js/dropdown.js"></script>
 </body>
 </html>
 

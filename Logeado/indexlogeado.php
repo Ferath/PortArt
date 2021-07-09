@@ -1,10 +1,10 @@
 <?php
     // Se inicializa la sesión
     session_start();
-    include 'config.php';
+    include '../includes/config.php';
     // Se comprueba que haya un usuario logeado, sino lo redirige al Login.php
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-            header("location: login.php");
+            header("location: ../login.php");
         exit;
     }
     $id_autor='';
@@ -12,9 +12,6 @@
     $contenido='';
     $MostrarFotos="SELECT * FROM imagenes";
     
-?>
-
-<?php
     $iniciado = "SELECT * FROM users WHERE id = ".$_SESSION["id"];
     //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $iniciado
     if($info = mysqli_query($link, $iniciado)):  
@@ -28,24 +25,27 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" 
+      type="image/png" 
+      href="../Assets/imgs/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="Assets/css/slider.css">
-    <link rel="stylesheet" href="Assets/css/btnnav.css">
-    <link rel="stylesheet" href="Assets/css/btnnav.css">
-    <link rel="stylesheet" href="Assets/css/normalize.css">
-    <link rel="stylesheet" href="Assets/css/CardsIndex.css">
-    <link rel="stylesheet" href="Assets/css/footer.css">
+    <link rel="stylesheet" href="../Assets/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../Assets/css/slider.css">
+    <link rel="stylesheet" href="../Assets/css/btnnav.css">
+    <link rel="stylesheet" href="../Assets/css/btnnav.css">
+    <link rel="stylesheet" href="../Assets/css/normalize.css">
+    <link rel="stylesheet" href="../Assets/css/CardsIndex.css">
+    <link rel="stylesheet" href="../Assets/css/footer.css">
     <title>Bienvenido <?php echo $datos['username']?></title>
 </head>
 <header> 
-        <a href="index.php"><img src="Assets/imgs/logo.png" alt="" class="logo"></a>
+        <a href="index.php"><img src="../Assets/imgs/logo.png" alt="" class="logo"></a>
         <nav class="menu">
                 <ul class="nav_links">
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="Diseño.php">Dibujos</a></li>
+                    <li><a href="indexlogeado.php">Inicio</a></li>
+                    <li><a href="diseñologeado.php">Dibujos</a></li>
                     <li><a href="Perfil.php?id=<?php echo $_SESSION["username"]; ?>"><?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
-                    <li><a href="logout.php" id="login">Cerrar Sesión</a></li>
+                    <li><a href="../includes/logout.php" id="login">Cerrar Sesión</a></li>
                     <li><img src="#" alt=""></li>
                 </ul>
             </img>
@@ -56,17 +56,17 @@
     <?php endif; ?>
     <div class="slideshow-container">
         <div class="mySlides fade">
-            <img src="Assets/imgs/slider/img1.jpg" style="width:100%">
+            <img src="../Assets/imgs/slider/img1.jpg" style="width:100%">
             <div class="text">Caption Text</div>
         </div>
         
         <div class="mySlides fade">
-            <img src="Assets/imgs/slider/img2.jpg" style="width:100%">
+            <img src="../Assets/imgs/slider/img2.jpg" style="width:100%">
             <div class="text">Caption Two</div>
         </div>
         
         <div class="mySlides fade">
-            <img src="Assets/imgs/slider/img3.jpg" style="width:100%">
+            <img src="../Assets/imgs/slider/img3.jpg" style="width:100%">
             <div class="text">Caption Three</div>
         </div>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -74,10 +74,10 @@
     </div>
 
     <div class="btn-main">
-            <a href="Diseño.php" class="btnpartes">Afiches</a>
-            <a href="Diseño.php" class="btnpartes">Logos</a>
-            <a href="Diseño.php" class="btnpartes">Banner</a>
-            <a href="Diseño.php" class="btnpartes">Dibujos</a>
+            <a href="diseñologeado.php" class="btnpartes">Afiches</a>
+            <a href="diseñologeado.php" class="btnpartes">Logos</a>
+            <a href="diseñologeado.php" class="btnpartes">Banner</a>
+            <a href="diseñologeado.php" class="btnpartes">Dibujos</a>
     </div>
     <div class="recome">
         <h3><strong class="h3diseño" >Diseños</strong> que podrian gustarte</h3>
@@ -113,7 +113,7 @@
             <?php endwhile; ?>
             <?php endif; ?> 
             <p class="price">$<?php echo $tarifas ?></p>
-            <a href="Perfil.php?id=<?php echo $id ?>"><button>Ver Producto</button></a>
+            <a href="../VisitaPerfil.php?id=<?php echo $id ?>"><button>Ver Producto</button></a>
         </div>
         <?php 
             endwhile;
@@ -127,6 +127,6 @@
             <h2>PorArt 2021</h2>
         </div>
     </footer>
-    <script src="Assets/js/slider.js"></script>
+    <script src="../Assets/js/slider.js"></script>
 </body>
 </html>
