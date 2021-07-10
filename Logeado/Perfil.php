@@ -41,104 +41,111 @@
     <title>Perfil de <?php echo $user['username']; ?></title>
 </head>
 <body>
-    <header> 
-            <a href="index.php"><img src="../Assets/imgs/logo.png" alt="" class="logo"></a>
-            <nav class="menu">
-                    <ul class="nav_links">
-                        <li><a href="indexlogeado.php">Inicio</a></li>
-                        <li><a href="diseñologeado.php">Dibujos</a></li>
-                        <li><a href="/Logeado/Perfil.php?id=<?php echo $_SESSION["username"]; ?>"><?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
-                        <li><a href="../includes/logout.php" id="login">Cerrar Sesión</a></li>
-                        <li><img src="#" alt=""></li>
-                    </ul>
-                </img>
-            </nav>
-    </header>
-    <main>
-        <div class="div-pefil">
-            <img src="../Assets/imgs/perfil/businesswoman.png" class="img-perfil"><br>
-            <label id="user_active"><?php echo $user['email']; ?></label>
-        </div>
-        <div class="container-btns">
-            <button class="btn-dropdown">Información
-                <i class="fa-caret-down"></i>
-            </button>
-            <div class="container-info">
-                <div id="wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Acerca de mí</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
+<header>    
+    <a href="indexlogeado.php"><img src="../Assets/imgs/logo.png" alt="" class="logo"></a></img>
+    <nav class="menu">
+        <ul class="nav_links">
+            <li class="item"><a href="indexlogeado.php">Inicio</a></li>
+            <li class="item"><a href="diseñologeado.php">Dibujos</a></li>
+            <li class="item"><a href="#"><?php echo htmlspecialchars($_SESSION["username"]); ?></a>
+            <ul class="desple">
+                <li><a class="subItem" href="Perfil.php?id=<?php echo $_SESSION["username"]; ?>">Perfil</a></li>
+                <li><a class="subItem" href="../includes/logout.php" id="login">Cerrar Sesión</a></li>
+            </ul>
+            </li>
+            <li class="item"><img src="#" alt=""></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="div-pefil">
+        <br>
+        <?php echo "<img id='imagen' class='img-perfil' src='data:image/jpg; base64,". base64_encode($user['avatar'])."'>"; ?><br>
+        <label id="user_active"><?php echo $user['email']; ?></label>
+        <form action="../includes/avatar.php" class="" method="POST" enctype="multipart/form-data">
+            Cambia tu foto de perfil: <input name="imagen" id="imagen" type="file"/>
+            <input type="submit" name="subir" value="Subir imagen"/>
+    </form>
+    </div>
+    <div class="container-btns">
+        <button class="btn-dropdown">Información
+            <i class="fa-caret-down"></i>
+        </button>
+        <div class="container-info">
+            <div id="wrapper">
+            <table>
+                <thead>
                     <tr>
-                        <td width="20%" style="text-align: center"><a href="Perfil.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></td>
-                        <td width="15%" class=""><?php echo $user['acercademi']; ?></td>
-                        <td width="15%" class="" style='text-align:centar'>
-                            <a href="update.php?id=<?php echo $_SESSION["id"] ?>" class=''>Editar</a> <a href="delete.php?id=<?php echo $_SESSION["id"] ?>" class=''>Eliminar</a>
-                        </td>
+                        <th>Nombre</th>
+                        <th>Acerca de mí</th>
+                        <th>Acciones</th>
                     </tr>
-                </table>
-	            </div>
+                </thead>
+                <tr>
+                    <td width="20%" style="text-align: center"><a href="Perfil.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></td>
+                    <td width="15%" class=""><?php echo $user['acercademi']; ?></td>
+                    <td width="15%" class="" style='text-align:centar'><a href="../includes/update.php?id=<?php echo $_SESSION["id"] ?>" class=''>Editar</a> <a href="../includes/delete.php?id=<?php echo $_SESSION["id"] ?>" class=''>Eliminar</a>
+                    </td>
+                </tr>
+            </table>
             </div>
         </div>
-        <div class="container-btns">
-            <button class="btn-dropdown">Contacto
-                <i class="fa-caret-down"></i>
-            </button>
-            <div class="container-info">
-                <p>Mi correo es: <?php echo $user['email']; ?><br><?php echo $user['phone']; ?></p>
-            <div id="todolist">
-            </div>
-            </div>
+    </div>
+    <div class="container-btns">
+        <button class="btn-dropdown">Contacto
+            <i class="fa-caret-down"></i>
+        </button>
+        <div class="container-info">
+            <p>Mi correo es: <?php echo $user['email']; ?><br><?php echo $user['phone']; ?></p>
+        <div id="todolist">
         </div>
-        <div class="container-btns">
-            <button class="btn-dropdown">Tarifas
-                <i class="fa-caret-down"></i>
-            </button>
-            <div class="container-info">
-                <p>Cobro: <?php echo $user['tarifas']; ?></p>
-            </div>
         </div>
-        <div class="container-btns">
-            <button class="btn-dropdown">Reseñas
-                <i class="fa-caret-down"></i>
-            </button>
-            <div class="container-info">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                <a href="CarroCompras.php"> Contratar servicio / prueba </a>
-            </div>
+    </div>
+    <div class="container-btns">
+        <button class="btn-dropdown">Tarifas
+            <i class="fa-caret-down"></i>
+        </button>
+        <div class="container-info">
+            <p>Cobro: <?php echo $user['tarifas']; ?></p>
         </div>
-        <form action="upload.php" class="" method="POST" enctype="multipart/form-data">
-                Subir una imagen: <input name="imagen" id="imagen" type="file"/>
-                <input type="submit" name="subir" value="Subir imagen"/>
-        </form>
-        <?php 
-        //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
-            if($resultado = mysqli_query($link, $MostrarFotos)):  
-        
-            //la variable $user contiene el contenido de $result en un array asociativo
-            while($fila = mysqli_fetch_assoc($resultado)): 
-                $id_autor=$fila["id_autor"];
-                $contenido=$fila["contenido"];
-                $tipo=$fila["tipo"];  
-        
-            // Finaliza el While de arriba
-            endwhile; 
-        
-            // Finaliza el IF de arriba
-            endif; 
-        ?>
-    </main>
-    <footer class="footer-main">
-        <div class="div-footer">
-            <h4 class="Contacto" style="cursor: pointer;"><strong style="color: #fa983a; cursor: pointer;">Contacto: </strong> lalolandia@gmail.com</h4>
-            <h2>PorArt 2021</h2>
+    </div>
+    <div class="container-btns">
+        <button class="btn-dropdown">Reseñas
+            <i class="fa-caret-down"></i>
+        </button>
+        <div class="container-info">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <a href="CarroCompras.php"> Contratar servicio / prueba </a>
         </div>
-    </footer>
-    <script src="../Assets/js/dropdown.js"></script>
+    </div>
+    <form action="../includes/upload.php" class="" method="POST" enctype="multipart/form-data">
+            Subir una imagen: <input name="imagen" id="imagen" type="file"/>
+            <input type="submit" name="subir" value="Subir imagen"/>
+    </form>
+    <?php 
+    //Ejecuto la query para obtener los resultados de la cadena de consulta en la variable $query
+        if($resultado = mysqli_query($link, $MostrarFotos)):  
+    
+        //la variable $user contiene el contenido de $result en un array asociativo
+        while($fila = mysqli_fetch_assoc($resultado)): 
+            $id_autor=$fila["id_autor"];
+            $contenido=$fila["contenido"];
+            $tipo=$fila["tipo"];  
+    
+        // Finaliza el While de arriba
+        endwhile; 
+    
+        // Finaliza el IF de arriba
+        endif; 
+    ?>
+</main>
+<footer class="footer-main">
+    <div class="div-footer">
+        <h4 class="Contacto" style="cursor: pointer;"><strong style="color: #fa983a; cursor: pointer;">Contacto: </strong> lalolandia@gmail.com</h4>
+        <h2>PorArt 2021</h2>
+    </div>
+</footer>
+<script src="../Assets/js/dropdown.js"></script>
 </body>
 </html>
 

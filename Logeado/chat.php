@@ -20,29 +20,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>chat</title>
 </head>
 <body>
-    <header>
-        <a href="index.php"><img src="Assets/imgs/logo.png" alt="" class="logo"></a>
-        <nav class="menu">
-                <ul class="nav_links">
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="Diseño.php">Dibujos</a></li>
-                    <li><a href="logout.php" id="login">Cerrar Sesión</a></li>
-                    <li><img src="#" alt=""></li>
-                </ul>
-            </img>
-        </nav>
-        <ul class="nav navbar-nav">
-    <?php $role = Auth::user()->id_rol; ?>
-        @if($role == 1)
-            <li>Insert Lists Here</li>
-        @else if($role == 2)
-            <li>Insert Lists Here</li>
-        @else if($role == 3)
-            <li>Insert Lists Here</li>
-        @endif 
-    </ul>
-    </header>
-    
+<header>    
+    <a href="indexlogeado.php"><img src="../Assets/imgs/logo.png" alt="" class="logo"></a></img>
+    <nav class="menu">
+        <ul class="nav_links">
+            <li class="item"><a href="indexlogeado.php">Inicio</a></li>
+            <li class="item"><a href="diseñologeado.php">Dibujos</a></li>
+            <li class="item"><a href="#"><?php echo htmlspecialchars($_SESSION["username"]); ?></a>
+            <ul class="desple">
+                <li><a class="subItem" href="Perfil.php?id=<?php echo $_SESSION["username"]; ?>">Perfil</a></li>
+                <li><a class="subItem" href="../includes/logout.php" id="login">Cerrar Sesión</a></li>
+            </ul>
+            </li>
+            <li class="item"><img src="#" alt=""></li>
+        </ul>
+    </nav>
+</header>
+
     <div class="chat-container">
         <h2>Nombre Usuario</h2>
         <div class="container">
