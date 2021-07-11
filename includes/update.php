@@ -44,36 +44,36 @@
 <html>
 <head>
 	<title>Editanto tu perfil</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" href="../Assets/css/update.css">
 </head>
 <body>
 	<!-- Aqui esta el formulario para hacer el update, ojo no cambiar los datos "NAME",etc -->
 	<div id="formularioupdate">
-		<h3>Editar usuario</h3>
-		<form action="update.php" method="post">
-			<label for="name">Nombre: </label><br />
-			<input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>" /><br /><br />
+        <form action="update.php" method="post" class="formulario">
+            <h3><?php echo $username?>, estas editando tu perfil</h3>
+            <label for="name">Nombre</label><br />
+            <input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>" /><br /><br />
 
-			<label for="email">Email: </label><br />
-			<input type="text" name="email" value="<?php if(isset($email)) echo $email; ?>" /><br /><br />
+            <label for="email">Email</label><br />
+            <input type="text" name="email" value="<?php if(isset($email)) echo $email; ?>" /><br /><br />
 
-			<label for="phone">Telefono: </label><br />
-			<input type="text" name="phone" value="<?php if(isset($phone)) echo $phone; ?>" /><br /><br />
+            <label for="phone">Telefono</label><br />
+            <input type="text" name="phone" value="<?php if(isset($phone)) echo $phone; ?>" /><br /><br />
 
-			<label for="phone">Tarifas: </label><br />
-			<input type="text" name="tarifas" value="<?php if(isset($tarifas)) echo $tarifas; ?>" /><br /><br />
-			
-			<label for="phone">Acerca de mi: </label><br />
-			<textarea type="text" rows=5 cols=35 name="acercademi"><?php if(isset($acercademi)) echo $acercademi; ?></textarea> <br /><br />
+            <label for="phone">Tarifas</label><br />
+            <input type="text" name="tarifas" value="<?php if(isset($tarifas)) echo $tarifas; ?>" /><br /><br />
 
-			<input class="btn-success" type="submit" name="actualizar" value="Actualizar" />
-			<input type="reset" value="Cancelar cambios">
+            <label for="phone">Acerca de mi: </label><br />
+            <textarea type="text" rows=5 cols=35 name="acercademi"><?php if(isset($acercademi)) echo $acercademi; ?></textarea> <br /><br />
 
-			<br /><br />
-			<a class="btn" href="perfil.php"><< Volver</a>
-			<input type="hidden" name="id" value="<?php if(isset($id)) echo $id; ?>" />
-			<input type="hidden" name="sw" value="1" />
-		</form>
-	</div>
+            <input class="btn-success" type="submit" name="actualizar" value="Actualizar" /><br>
+            <input type="reset" value="Cancelar cambios">
+
+            <br /><br />
+            <a class="btn" href="perfil.php"><< Volver</a>
+            <input type="hidden" name="id" value="<?php if(isset($id)) echo $id; ?>" />
+            <input type="hidden" name="sw" value="1" />
+        </form>
+    </div>
 </body>
 </html>

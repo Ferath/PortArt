@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
- 
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../login.php");
@@ -14,9 +14,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="Assets/css/footer.css">
-    <link rel="stylesheet" href="Assets/css/chat.css">
+    <!--  -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <link href="css/style.css" rel="stylesheet" id="bootstrap-css">
+    <script src="../Assets/js/chat.js"></script>
+
+    <!--  -->
+    <link rel="stylesheet" href="../Assets/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../Assets/css/footer.css">
+    <link rel="stylesheet" href="../Assets/css/chat.css">
     <title>chat</title>
 </head>
 <body>
@@ -37,37 +47,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </nav>
 </header>
 
-    <div class="chat-container">
-        <h2>Nombre Usuario</h2>
-        <div class="container">
-            <img src="Assets/imgs/perfil/businesswoman.png" style="width:100%;">
-            <p>Holaa como estas?</p>
-            <span class="time-right">11:00</span>
-        </div>
-        
-        <div class="container darker">
-            <img src="Assets/imgs/perfil/businessman.png" class="right" style="width:100%;">
-            <p>Hola bien y tu?</p>
-            <span class="time-left">11:01</span>
-        </div>
-        
-        <div class="container">
-            <img src="Assets/imgs/perfil/businesswoman.png" style="width:100%;">
-            <p>Estoy buscando a alguien para que me haga un logo</p>
-            <span class="time-right">11:02</span>
-        </div>
-        
-        <div class="container darker">
-        <img src="Assets/imgs/perfil/businessman.png" class="right" style="width:100%;">
-            <p>Yo puedo ayudarla con eso!</p>
-            <span class="time-left">11:05</span>
-        </div>
-        
-        <form class="example">
-            <input type="text" placeholder="Escribe un mensaje...">
-            <button type="submit"><img src="Assets/imgs/send.png" height="20px"></button>
-        </form>
-    </div>
+    
     <footer class="footer-main">
         <div class="div-footer">
             <h4 class="Contacto" style="cursor: pointer;"><strong style="color: #fa983a; cursor: pointer;">Contacto: </strong> lalolandia@gmail.com</h4>

@@ -50,6 +50,7 @@
             <li class="item"><a href="#"><?php echo htmlspecialchars($_SESSION["username"]); ?></a>
             <ul class="desple">
                 <li><a class="subItem" href="Perfil.php?id=<?php echo $_SESSION["username"]; ?>">Perfil</a></li>
+                <li><a class="subItem" href="chat.php">Mis chats</a></li>
                 <li><a class="subItem" href="../includes/logout.php" id="login">Cerrar Sesión</a></li>
             </ul>
             </li>

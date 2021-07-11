@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    include('includes/config.php');
     session_start();
     
     // Toma los datos ingresados en el formulario Register
