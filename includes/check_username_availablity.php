@@ -1,5 +1,5 @@
 <?php 
-require('../config.php');
+require('config.php');
 sleep(1);
 if (isset($_POST)) {
     $username = (string)$_POST['username'];
