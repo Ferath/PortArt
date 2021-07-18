@@ -1,0 +1,154 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #dcdde1;
+    background: #2e86de;
+}
+
+.title h1{
+    margin: 20px;
+    font-weight: 500;
+    font-size: 68px;
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translate(-50%);
+}
+
+/* formulario clase box que contiene los inputs */
+.box{
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #24252A;
+    border-radius: 10px;
+}
+
+.box input[type = "text"], .box input[type = "password"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #40739e;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    font-size: 18px;
+    transition: 0.25s;
+}
+
+.box input[type = "text"]:focus, .box input[type = "password"]:focus {
+    width: 280px;
+    border-color: #44bd32;
+}
+
+.box input[type = submit]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #44bd32;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.box input[type = submit]:hover{
+    background: #44bd32;
+}
+
+.box label{
+    font-size: 18px;
+}
+
+.box input[type = checkbox]{
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+label{
+    cursor: pointer;
+}
+
+.PassOlvidada{
+    position: relative;
+    left: 37px;
+    margin: 20px;
+    transition: 0.25s;
+}
+
+.PassOlvidada:hover{
+    color: #e5383b;
+}
+
+.registrate{
+    position: relative;
+    left: 98px;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    transition: 0.25s;
+    margin-top: 40px;
+}
+
+.registrate:hover{
+    color: #fa983a;
+}
+
+/* Final formulario box con inputs */
+
+/* Css Navbar */
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px  2%;
+    background: #24252A;
+}
+
+li,a{
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.logo{
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
+}
+
+.nav_links{
+    list-style: none;
+    margin-left: 50px;
+}
+
+.nav_links li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li a{
+    color: white;
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover{
+    color: #0088a9;
+}
+/* Final Css navbar */

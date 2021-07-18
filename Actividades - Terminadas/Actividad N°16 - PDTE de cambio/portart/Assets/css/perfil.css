@@ -1,0 +1,57 @@
+.div-pefil {
+    background: none;
+    margin: 20px;
+    margin-top: 52px;
+    margin-bottom: 52px;
+    padding: 20px;
+    width: 700px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    border: 1px solid black;
+}
+
+.img-perfil{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    height: 100px;
+}
+
+.div-pefil label {
+    position: relative;
+    left: 30%;
+    font-size: 44px;
+}
+
+.container-btns {
+    margin: 10px;
+    width: 700px;
+    position: relative;
+    left: 50%;
+    transform: translate(-48.5%);
+    border: 1px solid black;
+    background: white;
+    transition: All 0.3s ease 0s;
+}
+
+.container-btns p, .btn-dropdown {
+    padding: 20px;
+    font-size: 20px;
+    color: black;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.container-info {
+    display: none;
+    background-color: white;
+}
+
+.container-btns:hover, .container-info:hover, .slideshow-container:hover {
+    background: #fa983a;
+    border-radius: 15px;
+}

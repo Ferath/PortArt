@@ -1,0 +1,37 @@
+/* .btn-main{
+    position: relative;
+    left: 5%;
+    margin: 20px;
+    width: 100%;
+} */
+
+.btn-main a{
+    border: 2px solid #353b48;
+    padding: 10px;
+    margin: 20px;
+    font-size: 24px;
+}
+
+.btnpartes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:80px;
+    border-radius: 15px;
+    color:#353b48;
+    background: #dcdde1;
+}
+
+.btnpartes:hover{
+    background: #0088a9;
+    color: white;
+}
+
+@media (min-width:768px ) {
+    .btn-main {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 10px;
+    }
+}
